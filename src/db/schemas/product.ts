@@ -1,4 +1,4 @@
-import {Schema, Document, model } from 'mongoose'
+import {Schema, Document, model, ObjectId } from 'mongoose'
 import { User } from './user'
 
 interface Product extends Document {
@@ -16,10 +16,11 @@ const schema = new Schema({
     description:{type:String},
     user:{  
         type:Schema.Types.ObjectId,
-        ref:"users"
+        ref:"users",
+        required:true
     }
 })
 
-const Products = model('product', schema)
+const Products = model<Product>('product', schema)
 
 export default Products;

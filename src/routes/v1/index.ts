@@ -1,21 +1,20 @@
 import { Application } from 'express';
 
-import * as usersController from '../../controlllers/v1/users-controller';
-import * as productsController from '../../controlllers/v1/products-controller';
-
+import {UserCtrl} from '../../controlllers/v1/users-controller';
+import { productCtrl } from '../../controlllers/v1/products-controller';
+//import * as productsController from '../../controlllers/v1/products-controller'
 
 const createRoutesV1 = (app: Application):void => {
-    app.get('/api/v1/users', usersController.getUsers);
-    app.post('/api/v1/users', usersController.createUser);
-    app.get('/api/v1/users/:userId', usersController.getUserById);
-    app.get('/api/v1/products', productsController.getProducts);
-    app.get('/api/v1/products/:productId', productsController.getProductById);
-    app.post('/api/v1/products/create', productsController.createProduct);
-    app.put('/api/v1/products/:productId', productsController.updateProduct);
-    app.patch('/api/v1/products/:productId', productsController.partialUpdateProduct);
-    app.delete('/api/v1/products/:productId', productsController.deleteProductById);
-    app.post('/api/v1/products/:productId/notify-client', productsController.updateProductAndNotify);
-
+    app.get('/api/v1/users', UserCtrl.getUsers);
+    app.post('/api/v1/users', UserCtrl.createUser);
+    app.get('/api/v1/users/:userId', UserCtrl.getUserById);
+    app.post('/api/v1/products', productCtrl.createProduct);
+    app.get('/api/v1/products', productCtrl.getProducts);
+    app.get('/api/v1/products/:productId', productCtrl.getProductById);
+    app.put('/api/v1/products/:productId', productCtrl.updateProduct);
+    app.patch('/api/v1/products/:productId', productCtrl.partialUpdateProduct);
+    /* app.delete('/api/v1/products/:productId', productsController.deleteProductById);
+    app.post('/api/v1/products/:productId/notify-client', productsController.updateProductAndNotify); */
 };
 
 export default createRoutesV1;
