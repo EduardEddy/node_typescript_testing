@@ -1,5 +1,6 @@
 import { Request, Response} from 'express';
 import Products from '../../db/schemas/product'
+import { Types } from 'mongoose'
 
 class ProductController{
 
@@ -94,21 +95,19 @@ class ProductController{
         } else {
             res.status(404).send({})
         }
-    }
+    }*/
     
     
-    const deleteProductById = (req:Request, res:Response):void  => {
-        const productId: number = parseInt(req.params.productId);
-        const index = products.findIndex((item) => item.id === productId);
-        if (index !== -1) {
-            products.splice(index, 1);
+    deleteProductById = async (req:Request, res:Response):Promise<void>  => {
+        const productId: string = req.params.productId;
+        const product = await Products.deleteOne({_id:Types.ObjectId( productId)})
+        console.log( product )
+        if ( product.deletedCount && product.deletedCount > 0 ) {
             res.send({})
         } else {
             res.status(404).send({})
         }
-    
-    
-    } */
+    }
 }
 
 const productCtrl = new ProductController();

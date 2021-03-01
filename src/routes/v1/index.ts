@@ -2,7 +2,6 @@ import { Application } from 'express';
 
 import {UserCtrl} from '../../controlllers/v1/users-controller';
 import { productCtrl } from '../../controlllers/v1/products-controller';
-//import * as productsController from '../../controlllers/v1/products-controller'
 
 const createRoutesV1 = (app: Application):void => {
     app.get('/api/v1/users', UserCtrl.getUsers);
@@ -13,8 +12,8 @@ const createRoutesV1 = (app: Application):void => {
     app.get('/api/v1/products/:productId', productCtrl.getProductById);
     app.put('/api/v1/products/:productId', productCtrl.updateProduct);
     app.patch('/api/v1/products/:productId', productCtrl.partialUpdateProduct);
-    /* app.delete('/api/v1/products/:productId', productsController.deleteProductById);
-    app.post('/api/v1/products/:productId/notify-client', productsController.updateProductAndNotify); */
+    app.delete('/api/v1/products/:productId', productCtrl.deleteProductById);
+    /*app.post('/api/v1/products/:productId/notify-client', productsController.updateProductAndNotify); */
 };
 
 export default createRoutesV1;
