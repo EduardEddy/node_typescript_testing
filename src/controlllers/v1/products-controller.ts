@@ -138,7 +138,7 @@ class ProductController{
     deleteProductById = async (req:Request, res:Response):Promise<void>  => {
         try {
             const productId: string = req.params.productId;
-            validateObjectId(productId)
+            //validateObjectId(productId)
             const product = await Products.deleteOne({_id:productId, user:req.session.userId})
             if ( product.deletedCount && product.deletedCount > 0 ) {
                 res.send({})
